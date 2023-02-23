@@ -67,7 +67,8 @@ pub fn parse(raw: &str) -> Result<Definitions<'_>, Err<Error<&str>>> {
     let (remaining, parsed) = Definitions::parse(raw)?;
     assert!(
         remaining.is_empty(),
-        "There is redundant raw data after parsing"
+        "There is redundant raw data after parsing: {}",
+        remaining
     );
     Ok(parsed)
 }
