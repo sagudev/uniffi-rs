@@ -47,8 +47,6 @@ partial dictionary ComputedEffectTiming {
     CSSNumberish?        localTime;
 };
 
-enum FillMode { "none", "forwards", "backwards", "both", "auto" };
-
 [Exposed=Window]
 interface GroupEffect {
   constructor(sequence<AnimationEffect>? children,
