@@ -30,4 +30,14 @@ mod test {
         identifier.0 == "num";
         default.is_some();
     });
+
+    test!(should_parse_dictionary_member_with_attributed_type { "required [EnforceRange] unsigned long num = 5;" =>
+        "";
+        DictionaryMember;
+        attributes.is_none();
+        required.is_some();
+        identifier.0 == "num";
+        default.is_some();
+        type_.attributes.is_some();
+    });
 }
