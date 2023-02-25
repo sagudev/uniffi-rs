@@ -1,16 +1,16 @@
 use crate::attribute::ExtendedAttributeList;
 use crate::common::{Default, Identifier};
-use crate::types::Type;
+use crate::types::AttributedType;
 
 /// Parses dictionary members
 pub type DictionaryMembers<'a> = Vec<DictionaryMember<'a>>;
 
 ast_types! {
-    /// Parses dictionary member `[attributes]? required? type identifier ( = default )?;`
+    /// Parses dictionary member `[attributes]? required? attributedtype identifier ( = default )?;`
     struct DictionaryMember<'a> {
         attributes: Option<ExtendedAttributeList<'a>>,
         required: Option<term!(required)>,
-        type_: Type<'a>,
+        type_: AttributedType<'a>,
         identifier: Identifier<'a>,
         default: Option<Default<'a>>,
         semi_colon: term!(;),

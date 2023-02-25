@@ -154,6 +154,7 @@ ast_types! {
     }
 
     /// Parses `[attributes]? type`
+    /// this is called TypeWithExtendedAttributes in webidl specs
     struct AttributedType<'a> {
         attributes: Option<ExtendedAttributeList<'a>>,
         type_: Type<'a>,
