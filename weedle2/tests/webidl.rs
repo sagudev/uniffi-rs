@@ -108,11 +108,18 @@ fn interface_constructor() {
 
 #[test]
 fn should_parse_all_ed_webidl() {
-    for path in std::fs::read_dir("./tests/defs/ed/idl").unwrap() {
-        if let Ok(path) = path {
-            println!("Name: {}", path.path().display());
-            let content = read_file(path.path());
-            let parsed = weedle::parse(&content).unwrap();
-        }
+    let mut entries = std::fs::read_dir("./tests/defs/ed/idl")
+        .unwrap()
+        .map(|res| res.map(|e| e.path()))
+        .collect::<Result<Vec<_>, std::io::Error>>()
+        .unwrap();
+
+    // We sort entries to have deterministic test
+    entries.sort();
+
+    for path in &entries {
+        println!("Name: {}", path.display());
+        let content = read_file(path);
+        weedle::parse(&content).unwrap();
     }
 }
